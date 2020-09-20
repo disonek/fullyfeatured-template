@@ -16,11 +16,10 @@ macro(run_conan)
   conan_cmake_run(
     REQUIRES
     ${CONAN_EXTRA_REQUIRES}
-    catch2/2.11.0
-    docopt.cpp/0.6.2
-    fmt/6.2.0
-    spdlog/1.5.0
+    gtest/1.10.0
+    boost/1.71.0
     OPTIONS
+    # gtest:build_gmock=False
     ${CONAN_EXTRA_OPTIONS}
     BASIC_SETUP
     CMAKE_TARGETS # individual targets to link to

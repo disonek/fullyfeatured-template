@@ -1,52 +1,47 @@
-# automatically enable catch2 to generate ctest targets
-if(CONAN_CATCH2_ROOT_DEBUG)
-  include(${CONAN_CATCH2_ROOT_DEBUG}/lib/cmake/Catch2/Catch.cmake)
-else()
-  include(${CONAN_CATCH2_ROOT}/lib/cmake/Catch2/Catch.cmake)
-endif()
+add_executable(dp_re_tests
+    creational/BuilderTest.cpp
+    creational/FactoryMethodTest.cpp
+    creational/PrototypeTest.cpp
 
-add_library(catch_main STATIC catch_main.cpp)
-target_link_libraries(catch_main PUBLIC CONAN_PKG::catch2)
-target_link_libraries(catch_main PRIVATE project_options)
+    utils/TypeDeductionTest.cpp
+    utils/TypeDeduction.hpp
+    utils/Utils.hpp
 
-add_executable(tests tests.cpp)
-target_link_libraries(tests PRIVATE project_warnings project_options catch_main)
+    structural/AdapterTest.cpp
+    structural/BridgeTest.cpp
+    structural/FlyweightTest.cpp
 
-# automatically discover tests that are defined in catch based test files you can modify the unittests. TEST_PREFIX to
-# whatever you want, or use different for different binaries
-catch_discover_tests(
-  tests
-  TEST_PREFIX
-  "unittests."
-  EXTRA_ARGS
-  -s
-  --reporter=xml
-  --out=tests.xml)
+    behavioral/ChainTest.cpp
+    behavioral/CommandTest.cpp
 
-# Add a file containing a set of constexpr tests
-add_executable(constexpr_tests constexpr_tests.cpp)
-target_link_libraries(constexpr_tests PRIVATE project_options project_warnings catch_main)
+    algorithms/LeetCodeTest.cpp
+    algorithms/StandardTest.cpp
+    )
 
-catch_discover_tests(
-  constexpr_tests
-  TEST_PREFIX
-  "constexpr."
-  EXTRA_ARGS
-  -s
-  --reporter=xml
-  --out=constexpr.xml)
+target_include_directories(dp_re_tests
+    PRIVATE 
+        utils)
 
-# Disable the constexpr portion of the test, and build again this allows us to have an executable that we can debug when
-# things go wrong with the constexpr testing
-add_executable(relaxed_constexpr_tests constexpr_tests.cpp)
-target_link_libraries(relaxed_constexpr_tests PRIVATE project_options project_warnings catch_main)
-target_compile_definitions(relaxed_constexpr_tests PRIVATE -DCATCH_CONFIG_RUNTIME_STATIC_REQUIRE)
 
-catch_discover_tests(
-  relaxed_constexpr_tests
-  TEST_PREFIX
-  "relaxed_constexpr."
-  EXTRA_ARGS
-  -s
-  --reporter=xml
-  --out=relaxed_constexpr.xml)
+        
+target_link_libraries(dp_re_tests
+    PRIVATE
+    CONAN_PKG::gtest
+    Threads::Threads
+    CONAN_PKG::boost
+    dp_lib
+    )
+
+set_property(TARGET dp_re_tests PROPERTY
+  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+
+target_compile_options(dp_re_tests
+   PRIVATE
+    -g -Wall -fPIC)
+
+add_test(NAME dp_re_tests
+         COMMAND dp_re_tests)
+
+# add_custom_command(TARGET dp_re_tests
+#                    POST_BUILD
+#                    COMMAND ctest -C Debug -T test --output-on-failuret)
