@@ -1,10 +1,10 @@
 add_executable(app
      main.cpp
     )
+    
 target_link_libraries(app
-    PRIVATE
+    PRIVATE   
+        project_options
+        project_warnings
         dp_lib
         )
-target_compile_options(app
-    PUBLIC
-        -g -Wall -fPIC)

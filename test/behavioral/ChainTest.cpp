@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
+
 #include <algorithm>
+
 #include "Chain.hpp"
 #include "ChainMy.hpp"
 #include "Utils.hpp"
@@ -31,7 +33,7 @@ public:
         return result;
     }
 };
-}
+} // namespace chain
 
 class ChainTest : public ::testing::Test
 {

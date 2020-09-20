@@ -10,7 +10,7 @@ class Director
 public:
     explicit Director(std::unique_ptr<BuilderClassic>&& builder);
     Director() = default;
-    void setBuilder(std::unique_ptr<BuilderClassic>&& builder);
+    void setBuilder(std::unique_ptr<BuilderClassic>&& newBuilder);
     abstract::Products getProducts();
 
 private:

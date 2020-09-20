@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
+
 #include <memory>
+
 #include "Command.hpp"
 
 using namespace testing;
@@ -13,7 +15,7 @@ public:
         damager->addCommand(std::move(command));
     }
 };
-}
+} // namespace command
 
 class CommandTest : public ::testing::Test
 {
@@ -28,16 +30,16 @@ TEST_F(CommandTest, main)
     client.interface(damager, std::make_unique<behav::CommandADAtack>(tank));
 
     damager->runCommands();
-    EXPECT_EQ(tank->health, 90);
+    EXPECT_EQ(tank->health, static_cast<uint32_t>(90));
     damager->restoreCommands();
-    EXPECT_EQ(tank->health, 100);
+    EXPECT_EQ(tank->health, static_cast<uint32_t>(100));
 
     client.interface(damager, std::make_unique<behav::CommandAPAtack>(tank));
     client.interface(damager, std::make_unique<behav::CommandADAtack>(tank));
     client.interface(damager, std::make_unique<behav::CommandAPAtack>(tank));
     client.interface(damager, std::make_unique<behav::CommandADAtack>(tank));
     damager->runCommands();
-    EXPECT_EQ(tank->health, 40);
+    EXPECT_EQ(tank->health, static_cast<uint32_t>(40));
     damager->restoreCommands();
-    EXPECT_EQ(tank->health, 100);
+    EXPECT_EQ(tank->health, static_cast<uint32_t>(100));
 }

@@ -22,22 +22,15 @@ target_include_directories(dp_re_tests
     PRIVATE 
         utils)
 
-
-        
 target_link_libraries(dp_re_tests
     PRIVATE
-    CONAN_PKG::gtest
-    Threads::Threads
-    CONAN_PKG::boost
-    dp_lib
+        project_options
+        project_warnings
+        CONAN_PKG::gtest
+        Threads::Threads
+        CONAN_PKG::boost
+        dp_lib
     )
-
-set_property(TARGET dp_re_tests PROPERTY
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
-
-target_compile_options(dp_re_tests
-   PRIVATE
-    -g -Wall -fPIC)
 
 add_test(NAME dp_re_tests
          COMMAND dp_re_tests)

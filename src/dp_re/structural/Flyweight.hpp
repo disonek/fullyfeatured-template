@@ -65,8 +65,8 @@ public:
         std::array<abstract::Product, 10> basic;
         basic.fill(abstract::Product{"___"});
         display.fill(std::move(basic));
-        for(auto us : uniqueStates)
-            flyweight.operation(us, display);
+        for(auto usSingle : uniqueStates)
+            flyweight.operation(usSingle, display);
     }
 
     void draw()

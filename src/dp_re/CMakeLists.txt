@@ -38,21 +38,12 @@ add_library(dp_lib STATIC
     concurr/Hello.hpp
     )
 
-target_compile_options(dp_lib
-   PUBLIC
-    -g -Wall
-   PRIVATE
-    -fPIC)
-
 target_link_libraries(dp_lib
     PRIVATE
+        project_options
+        project_warnings    
         Threads::Threads
     )
-
-#add_static_tools(dp_lib)
-target_compile_features(dp_lib
-    PRIVATE
-        cxx_std_17)
 
 target_include_directories(dp_lib
     PUBLIC

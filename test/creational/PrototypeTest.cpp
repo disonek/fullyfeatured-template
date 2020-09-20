@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
+
 #include <algorithm>
 #include <memory>
+
 #include "Prototype.hpp"
 #include "Utils.hpp"
+
 
 using namespace testing;
 
@@ -21,7 +24,7 @@ public:
         dp_tests::checkProductDesc(productsDescs, toCompare);
     }
 };
-}
+} // namespace prototype
 
 class PrototypeTest : public ::testing::Test
 {

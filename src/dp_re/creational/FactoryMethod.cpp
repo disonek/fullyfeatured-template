@@ -45,4 +45,4 @@ StarcraftProduct::StarcraftProduct(std::string&& one, std::string&& two, std::st
     : abstract::Product{"StarcraftProduct->" + std::move(one), std::move(two), std::move(three)}
 {
 }
-}
+} // namespace creatt

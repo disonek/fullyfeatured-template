@@ -7,9 +7,9 @@ Director::Director(std::unique_ptr<BuilderClassic>&& builder)
 {
 }
 
-void Director::setBuilder(std::unique_ptr<BuilderClassic>&& builder)
+void Director::setBuilder(std::unique_ptr<BuilderClassic>&& newBuilder)
 {
-    this->builder = std::move(builder);
+    this->builder = std::move(newBuilder);
 }
 
 abstract::Products Director::getProducts()
@@ -18,4 +18,4 @@ abstract::Products Director::getProducts()
         return abstract::Products{};
     return builder->getBuilderProducts();
 }
-}
+} // namespace creatt

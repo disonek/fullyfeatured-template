@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
+
 #include <memory>
+
 #include "FactoryMethod.hpp"
+
 
 using namespace testing;
 
@@ -19,7 +22,7 @@ public:
         EXPECT_EQ(factory->make()->getDesc(), toCompare);
     }
 };
-}
+} // namespace factorymethod
 
 class FactoryMethodTest : public ::testing::Test
 {
