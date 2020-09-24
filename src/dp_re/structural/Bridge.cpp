@@ -1,4 +1,5 @@
 #include "Bridge.hpp"
+
 #include "BridgeImplConcrete.hpp"
 
 namespace struc {
@@ -9,9 +10,9 @@ Bridge::Bridge(std::unique_ptr<BridgeImpl>&& impl)
 {
 }
 
-void Bridge::setImplemenation(std::unique_ptr<BridgeImpl>&& impl)
+void Bridge::setImplemenation(std::unique_ptr<BridgeImpl>&& implToMove)
 {
-    this->impl = std::move(impl);
+    this->impl = std::move(implToMove);
 }
 
 BridgeStandard::BridgeStandard()
@@ -45,4 +46,4 @@ std::set<std::string> BridgeSpecial::getProductsDesc()
 
     return productsDesc;
 }
-}
+} // namespace struc
