@@ -27,11 +27,11 @@ public:
                 }
                 else
                 {
-                    res.insert(buffer.size());
+                    res.insert(static_cast<int>(buffer.size()));
                     break;
                 }
             }
-            res.insert(buffer.size());
+            res.insert(static_cast<int>(buffer.size()));
         }
         return *res.cend();
     }

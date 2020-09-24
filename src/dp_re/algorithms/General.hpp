@@ -89,7 +89,7 @@ int maxSubArray(std::vector<int>&& nums)
     {
         return thisPlaceEndSubarrayMax;
     }
-    for(int i = 1; i < static_cast<int>(nums.size()); i++)
+    for(uint32_t i = 1; i < nums.size(); i++)
     {
         thisPlaceEndSubarrayMax = std::max(nums.at(i), nums.at(i) + thisPlaceEndSubarrayMax);
         max = std::max(max, thisPlaceEndSubarrayMax);
@@ -118,4 +118,4 @@ void moveZeroes(std::vector<int>& nums)
         nums.push_back(0);
     }
 }
-}
+} // namespace algo

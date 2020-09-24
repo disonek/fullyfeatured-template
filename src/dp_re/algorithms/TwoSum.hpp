@@ -12,16 +12,16 @@ public:
     std::pair<int, int> twoSum(std::vector<int>& nums, int target)
     {
         std::unordered_map<int, int> vecToSet;
-        for(auto i = 0; i < static_cast<int>(nums.size()); i++)
+        for(uint32_t i = 0; i < nums.size(); i++)
         {
-            vecToSet.insert({static_cast<int>(nums[i]), i});
+            vecToSet.insert({nums[i], i});
         }
 
-        for(auto i = 0; i < static_cast<int>(nums.size()); i++)
+        for(uint32_t i = 0; i < nums.size(); i++)
         {
             auto it = vecToSet.find(target - nums[i]);
             if(it != vecToSet.cend())
-                if(it->second != i)
+                if(it->second != static_cast<int>(i))
                 {
                     return std::make_pair(i, it->second);
                 }
@@ -30,4 +30,4 @@ public:
         return std::make_pair(0, 0);
     }
 };
-}
+} // namespace algo
