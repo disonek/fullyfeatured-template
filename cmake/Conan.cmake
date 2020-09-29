@@ -17,7 +17,7 @@ macro(run_conan)
     REQUIRES
     ${CONAN_EXTRA_REQUIRES}
     gtest/1.10.0
-    boost/1.71.0
+    # boost/1.71.0
     OPTIONS
     # gtest:build_gmock=False
     ${CONAN_EXTRA_OPTIONS}

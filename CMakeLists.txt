@@ -68,7 +68,7 @@ if(ENABLE_TESTING)
 endif()
 
 add_subdirectory(src/apps)
-add_subdirectory(src/dp_re)
+add_subdirectory(src/ex_lib)
 
 option(ENABLE_UNITY "Enable Unity builds of projects" OFF)
 if(ENABLE_UNITY)
